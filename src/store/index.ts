@@ -17,7 +17,6 @@ export interface ApplicationState {
   inventory: InventoryState;
   router: RouterState;
 }
-
 export const createRootReducer = (history: History) =>
   combineReducers({
     cart: cartReducer,

@@ -6,6 +6,7 @@ import { ThunkAction } from "redux-thunk";
 import { ApplicationState } from "../index";
 import inventory from "../../mockdata";
 
+
 export type AppThunk = ActionCreator<
   ThunkAction<void, ApplicationState, null, Action<string>>
 >;
@@ -14,6 +15,7 @@ export const fetchRequest: AppThunk = () => {
   return (dispatch: Dispatch): Action => {
     try {
       console.log("inventory --- ",inventory);
+      
       return dispatch({
         type: InventoryActionTypes.FETCH_SUCCESS,
         payload: inventory
