@@ -54,7 +54,7 @@ const Navbar: React.FC<AllProps> = ({ data, loading, errors, children }) => {
     <div>
       <NavContainer>
         <NavHeader>
-          <Link to="/">ECart</Link>
+          <Link to="/">My Cart</Link>
         </NavHeader>
         <NavCart>
           <Link to="/cart">

@@ -13,6 +13,7 @@ export type AppThunk = ActionCreator<
 export const fetchRequest: AppThunk = () => {
   return (dispatch: Dispatch): Action => {
     try {
+      console.log("inventory --- ",inventory);
       return dispatch({
         type: InventoryActionTypes.FETCH_SUCCESS,
         payload: inventory
