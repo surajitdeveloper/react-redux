@@ -3,11 +3,7 @@ import { connect } from "react-redux";
 import styled from "styled-components";
 
 import ProductItem from "../ProductItem";
-import { ApplicationState } from "../../store";
-import { Inventory } from "../../store/inventory/types";
-import { fetchRequest, fetchData } from "../../store/inventory/action";
-import { ThunkDispatch } from "redux-thunk";
-import { AnyAction } from "redux";
+import { fetchData } from "../../store/inventory/action";
 
 const Container = styled.div`
   width: 100%;
@@ -40,7 +36,11 @@ type AllProps = PropsFromState;
 
 const HomePage: React.FC<AllProps> = () => {
 
-let render = {};
+  let render = {};
+  if(data1.length > 0)
+  {
+    render = data1.map(item => {return <ProductItem item={item} />;})
+  }
   useEffect(()=>{
     fetchData().then(e=>{
       console.log("fetchdata then", e);
@@ -51,11 +51,8 @@ let render = {};
         render = data1.map(item => {return <ProductItem item={item} />;})
       }
     })
-  }, []);
-  if(data1.length > 0)
-  {
-    render = data1.map(item => {return <ProductItem item={item} />;})
-  }
+  });
+  
   return (
     <Container>
       <ProductListItems>
