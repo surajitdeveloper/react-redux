@@ -14,9 +14,7 @@ export type AppThunk = ActionCreator<
 export const fetchRequest: AppThunk = () => {
   return (dispatch: Dispatch): Action => {
     try {
-      let fire = firebase.database().ref('lead_id')
-      console.log("firebase --- ",fire);
-      console.log("inventory --- ",inventory);
+      
       
       return dispatch({
         type: InventoryActionTypes.FETCH_SUCCESS,
@@ -29,3 +27,17 @@ export const fetchRequest: AppThunk = () => {
     }
   };
 };
+
+export const fetchData = () => {
+  const myPromise = new Promise((resolve, reject) => {
+    const fire = firebase.database().ref("product")
+      fire.on("value", (snapshot) => {
+        // console.log("snap --- ",snapshot.val());
+        resolve(snapshot.val());
+     },  (error) => {
+        console.log("Error: " , error);
+     });
+      // console.log("firebase --- ",fire);
+  });
+  return myPromise;
+}
