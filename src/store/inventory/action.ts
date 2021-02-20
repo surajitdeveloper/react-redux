@@ -6,7 +6,7 @@ import { ThunkAction } from "redux-thunk";
 import { ApplicationState } from "../index";
 import inventory from "../../mockdata";
 
-
+import firebase from "../../firebase";
 export type AppThunk = ActionCreator<
   ThunkAction<void, ApplicationState, null, Action<string>>
 >;
@@ -14,6 +14,8 @@ export type AppThunk = ActionCreator<
 export const fetchRequest: AppThunk = () => {
   return (dispatch: Dispatch): Action => {
     try {
+      let fire = firebase.database().ref('lead_id')
+      console.log("firebase --- ",fire);
       console.log("inventory --- ",inventory);
       
       return dispatch({
