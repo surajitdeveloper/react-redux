@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 
@@ -19,40 +19,43 @@ const ProductListItems = styled.div`
 
 
 
-const HomePage = () => {
-  const [products, setProducts] = React.useState([
-    {
-      name: "Levo Tan Lounge Chair",
-      price: "600",
-      image: "./images/products/chair6.png",
-      description:
-        "You don’t have to go outside to be rugged. The Cigar rawhide sofa features a sturdy corner-blocked wooden frame and rawseams for that Malboro-person look. This brown leather sofa iscozy in a cottage, cabin, or a condo. And the leather (the leather!) becomes more beautiful with use: subtle character markings such as insect bites, healed scars, and grain variation reflects a real vintage. Saddle up and pass the remote.",
-      brand: "Mahesh",
-      currentInventory: 15,
-      id: "994d33fb-7ee3-43a6-ae51-1687f9cd7c15"
+// const HomePage = () => 
+class HomePage extends React.Component
+{
+  constructor(props) {
+    super(props);
+    this.state = {
+      products: [ ]
     }
-  ]);
-  let render = {};
-  if(products.length > 0)
+    let state = JSON.parse(JSON.stringify(this.state)); 
+    if(state.products.length == 0)
+    {
+      fetchData().then(e=>{
+        console.log("fetchdata then", e);
+        let produt = JSON.parse(JSON.stringify(e));
+        console.log("produt --- ",produt);
+        this.setState({products: produt})
+      })
+    }
+ }
+  render()
   {
-    render = products.map(item => {return <ProductItem item={item} />;})
+    let render = "Please Wait !!! Products is loading";
+    let state = JSON.parse(JSON.stringify(this.state));
+    
+    if(state.products.length > 0)
+    {
+      render = state.products.map(item => {return <ProductItem item={item} />;})
+    }
+    return (
+      <Container>
+        <ProductListItems>
+          {render}
+        </ProductListItems>
+      </Container>
+    );
   }
-  useEffect(()=>{
-    fetchData().then(e=>{
-      console.log("fetchdata then", e);
-      let produt = JSON.parse(JSON.stringify(e));
-      setProducts(produt);
-      console.log("products ---", products);
-    })
-  },[]);
   
-  return (
-    <Container>
-      <ProductListItems>
-        {  render  }
-      </ProductListItems>
-    </Container>
-  );
 };
 
 
