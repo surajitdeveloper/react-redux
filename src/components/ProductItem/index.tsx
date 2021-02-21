@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import { Inventory } from "../../store/inventory/types";
 import { addToCart } from "../../store/cart/action";
 import { ThunkDispatch } from "redux-thunk";
 import { AnyAction } from "redux";
@@ -48,7 +47,7 @@ const AddToCart = styled.button`
 `;
 
 interface propsFromComponent {
-  item: Inventory;
+  item: any;
 }
 
 interface propsFromDispatch {
