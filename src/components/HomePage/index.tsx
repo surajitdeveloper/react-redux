@@ -25,19 +25,20 @@ class HomePage extends React.Component
   constructor(props) {
     super(props);
     this.state = {
-      products: [ ]
+      products: []
     }
     let state = JSON.parse(JSON.stringify(this.state)); 
     if(state.products.length == 0)
     {
-      fetchData().then(e=>{
+      fetchData()
+      .then(e=>{
         console.log("fetchdata then", e);
         let produt = JSON.parse(JSON.stringify(e));
         console.log("produt --- ",produt);
         this.setState({products: produt})
       })
     }
- }
+  }
   render()
   {
     let render = "Please Wait !!! Products is loading";

@@ -7,22 +7,29 @@ import { ApplicationState } from "../../store";
 import { Inventory } from "../../store/inventory/types";
 import { Cart } from "../../store/cart/types";
 
+const Nav = styled.div`
+width: 100%;
+background: #e7e8eb;
+`;
+
 const NavContainer = styled.div`
   width: 100%;
   height: 50px;
   /* position: fixed; */
   background: #e7e8eb;
   margin: auto;
+  max-width: 1170px;
+  margin: auto;
 `;
 
 const NavHeader = styled.div`
   width: 20%;
   float: left;
-  padding: 10px;
+  padding: 13px;
 `;
 
 const NavCart = styled.div`
-  width: 20%;
+  width: 13%;
   float: right;
   padding: 10px;
   cursor: pointer;
@@ -52,6 +59,7 @@ type AllProps = propsFromState;
 const Navbar: React.FC<AllProps> = ({ data, loading, errors, children }) => {
   return (
     <div>
+      <Nav>
       <NavContainer>
         <NavHeader>
           <Link to="/">My Cart</Link>
@@ -62,6 +70,7 @@ const Navbar: React.FC<AllProps> = ({ data, loading, errors, children }) => {
           </Link>
         </NavCart>
       </NavContainer>
+      </Nav>
       {children}
     </div>
   );
